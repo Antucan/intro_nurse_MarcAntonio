@@ -24,7 +24,7 @@ class NurseController extends AbstractController
             'Nurses' => json_encode($nurses)
         ]);
     }
-    #[Route('/nurse/login', name: 'app_login')]
+    #[Route('/nurse/login', methods:['POST'], name: 'app_login')]
     public function login(): JsonResponse
     {
         $nurses = array(
@@ -47,7 +47,7 @@ class NurseController extends AbstractController
         //return new Response(json_encode($nurses2), Response::HTTP_OK);
         //return new JsonResponse($nurses, Response::HTTP_OK);
     }
-    #[Route('/nurse/find', name: 'app_find')]
+    #[Route('/nurse/find', methods:['GET'], name: 'app_find')]
     public function findByName(): JsonResponse
     {
         $nurses = array(
