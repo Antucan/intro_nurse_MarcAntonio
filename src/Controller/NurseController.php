@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+#[Route('/nurse', name: 'nurse_')] //Same prefix on symphony
 
 class NurseController extends AbstractController
 {
