@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+
 class NurseController extends AbstractController
 {
     #[Route('/nurse/list', name: 'app_list')]
@@ -25,7 +26,7 @@ class NurseController extends AbstractController
             'Nurses' => json_encode($nurses)
         ]);
     }
-    #[Route('/nurse/login', methods: ['POST'], name: 'app_login')]
+    #[Route('/nurse/login', methods: ['GET'], name: 'app_login')]
     public function login(Request $request): JsonResponse
     {
         $nurses = array(
@@ -36,9 +37,9 @@ class NurseController extends AbstractController
             array("name" => "dave", "pwd" => "555"),
         );
         //$exist = false;
-        $loginName = $_POST['name'];
-        $loginPwd = $_POST['pwd'];
-      
+        $loginName = $request->get('name');
+        $loginPwd = $request->get('pwd');
+
         foreach ($nurses as $nurse) {
             if ($nurse["name"] == $loginName && $nurse["pwd"] == $loginPwd) {
                 /*$exist = true;
@@ -61,7 +62,7 @@ class NurseController extends AbstractController
             array("name" => "jordi", "pwd" => "444"),
             array("name" => "dave", "pwd" => "555"),
         );
-        $name = $request->query->$_GET['name'];
+        $name = $request->query->get('name');
         foreach ($nurses as $nurse) {
             if (isset($nurse["name"]) && $nurse["name"] == $name) {
                 $showNurse = $nurse["name"];
