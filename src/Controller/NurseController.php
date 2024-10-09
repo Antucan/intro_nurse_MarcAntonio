@@ -35,18 +35,21 @@ class NurseController extends AbstractController
             array("name" => "jordi", "pwd" => "444"),
             array("name" => "dave", "pwd" => "555"),
         );
-        $exist = false;
-        $loginName = $request->$_POST['name'];
-        $loginPwd = $request->$_POST['pwd'];
+        //$exist = false;
+        $loginName = $_POST['name'];
+        $loginPwd = $_POST['pwd'];
+      
         foreach ($nurses as $nurse) {
             if ($nurse["name"] == $loginName && $nurse["pwd"] == $loginPwd) {
-                $exist = true;
-                return new JsonResponse($exist);
+                /*$exist = true;
+                return new JsonResponse($exist);*/
+                return new JsonResponse(['message' => 'Login successful'], Response::HTTP_OK);
             }
         }
-        return new JsonResponse($exist);
+        //return new JsonResponse($exist);
         //return new Response(json_encode($nurses2), Response::HTTP_OK);
         //return new JsonResponse($nurses, Response::HTTP_OK);
+        return new JsonResponse(['message' => 'Invalid credentials'], Response::HTTP_UNAUTHORIZED);
     }
     #[Route('/nurse/find', methods: ['GET'], name: 'app_find')]
     public function findByName(Request $request): JsonResponse
