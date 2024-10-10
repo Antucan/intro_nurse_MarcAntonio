@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class NurseController extends AbstractController
 {
-    #[Route('/nurse/list', name: 'app_list')]
+    #[Route('/list', name: 'app_list')]
     public function showList(): JsonResponse
     {
         //$nurses = array('Antonio', 'Jordi', 'Alex', 'Axel', 'Dave');
@@ -27,7 +27,7 @@ class NurseController extends AbstractController
             'Nurses' => json_encode($nurses)
         ]);
     }
-    #[Route('/nurse/login', methods: ['GET'], name: 'app_login')]
+    #[Route('/login', methods: ['GET'], name: 'app_login')]
     public function login(Request $request): JsonResponse
     {
         $nurses = array(
@@ -53,7 +53,7 @@ class NurseController extends AbstractController
         //return new JsonResponse($nurses, Response::HTTP_OK);
         return new JsonResponse(['message' => 'Invalid credentials'], Response::HTTP_UNAUTHORIZED);
     }
-    #[Route('/nurse/find', methods: ['GET'], name: 'app_find')]
+    #[Route('/find', methods: ['GET'], name: 'app_find')]
     public function findByName(Request $request): JsonResponse
     {
         $nurses = array(
